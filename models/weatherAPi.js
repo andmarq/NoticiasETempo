@@ -1,6 +1,6 @@
-
-const apiKey = "4d3a0c8dabb644bcb1ec79d3aad20a2e";
-const apiKey2 = "rfUFZrxC7xmzUOFhYm0kboCBSmk7uJMR";
+require('dotenv').config();
+const apiKey = process.env.API_KEY1;
+const apiKey2 = process.env.API_KEY2;
 const latitude = "-21.10474";
 const longitude = "-41.37566";
 const cidade = "MimosodoSul.ES"; // Correção no nome da cidade
