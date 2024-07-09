@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link rel="stylesheet" href="views/stylesTempo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <%function retornaNomeDia (data) {
+        const d = new Date(`${data}T12:00:00`)
+        const dia = d.getDay();
+        const dias = ["Domingo", "Segunda-Feira", "Terça-feira", "Quarta-feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
+        const dt = new Date();
+        const ano = dt.getFullYear();   
+        const mes = String(dt.getMonth() + 1).padStart(2, '0');
+        const diaHoje = String(dt.getDate()).padStart(2, '0');
+        const dataFormatada = `${ano}-${mes}-${diaHoje}`;
+        return dataFormatada == data ? "Hoje" : dias[dia];
+    } %>
+
+    <%
+    function diminuirHora(hora) {
+        const partes = hora.split(':');
+        let horas = parseInt(partes[0]);
+        let minutos = parseInt(partes[1]);
+        horas -= 3;
+        if (horas < 0) {
+            horas += 24; 
+        }
+        let novaHora = `${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+    
+        return novaHora;
+    }%>
+    
+    <header>
+        <div class="header__containerLegenda">
+            <h1 class="header__containerLegenda__legandaPrincipal"><%= dadosGerais[0].city_name%></h1>
+            <div class="header__containerLegenda__legendaTemperatura">
+                <em class="header__containerLegenda__legandaTemperatura__temperatura"><%= Math.floor(dadosGerais[0].app_temp)%></em>
+                <em class="header__containerLegenda__legendaTemperatura__SenseTerm"><%=Math.floor(dados[0].max_temp)%>/<%=Math.floor(dados[0].min_temp)%></em>
+            </div>
+        </div>
+        <div class="header__containerImg">
+            
+                <img src="<%= retornaImg(dados[0].weather.code)%>" alt="" class="header__containerImg__imgTempo">
+            
+        </div>    
+    </header>
+    <main>
+        <div class="main__infoGarais">
+            <div class="main__infoGerais__infoProxHora">
+                <div class="main__infoGerais__infoProxHora__previsaoProxHora">
+                    
+                    <%dadosProxHora.map(item => {%>
+                        <div class="main__infoGerais__infoProxHora__previsaoProxHora__itens">
+                            <em class="main__infoGerais__infoProxHora__previsaoProxHora__itens__hora"><%= item.hora%></em>
+                            <img src="<%= retornaImg(dados[0].weather.code)%>" alt="" class="main__infoGerais__infoProxHora__previsaoProxHora__itens__img"></img>
+                            <em class="main__infoGerais__infoProxHora__previsaoProxHora__itens__temperatura"><%= item.temperatura%><p>&deg;C</p></em>
+                        </div>   
+                    <%})%>    
+                </div>
+                <div class="main__infoGerais__infoProxHora__informacoes">
+                    <p class="main__infoGerais__infoProxHora__informacoes__desc">Status : <%= dados[0].weather.description%></p>
+                </div>
+            </div>
+            <div class="main__infoGerais__infoProxDias">
+            
+                <% dados.map(item => {  %>
+                    <div class="main__infoGerais__infoProxDias__infoDiaria">
+                        <div class="main__infoGerais__infoProxDias__infoDiaria_itens1">
+                            <p class="main__infoGerais__infoProxDias__infoDia"><%=retornaNomeDia(item.datetime)%></p>
+                        </div>
+                        <div class="main__infoGerais__infoProxDias__infoDiaria_itens">
+                            <p class="main__infoGerais__infoProxDias__probabilidade"><%= item.pop%>
+                            <img src="./views/imgs/agua.png" alt="gotas" class="main__infoGerais__infoProxDias__imgGotas">
+                            </p>
+                        </div>
+                        <div class="main__infoGerais__infoProxDias__infoDiaria_itens">
+                            <img src="<%=retornaImg(item.weather.code)%>" alt="" class="main__infoGerais__infoProxDias__imgTempo">
+                        </div>
+                        <div class="main__infoGerais__infoProxDias__infoDiaria_itens">
+                            <em class="main__infoGerais__infoProxDias__mimMaxTemp"><%=item.app_max_temp.toFixed(0)%>/<%=item.app_min_temp.toFixed(0)%></em>
+                        </div>
+                    </div>
+                
+                <%})%>
+            </div>
+        </div>
+
+        <div class="main__umidadeVento">
+            <div class="main__umidadeVento__indiceUV">
+                <div class="main__umidadeVento__indiceUV__container">
+                    <img src="./views/imgs/sol.png" alt="" class="main__umidadeVento__indiceUV__img"><br>
+                    <p class="main__umidadeVento__indiceUV__descricao">Índice UV <br><br> <%= dadosGerais[0].uv%></p>
+                </div>
+            </div>
+            <div class="main__umidadeVento__umidade">
+                <div class="main__umidadeVento__indiceUV__container">
+                    <img src="./views/imgs/umidade.png" alt="" class="main__umidadeVento__indiceUV__img"><br>
+                    <p class="main__umidadeVento__indiceUV__descricao">Umidade <br><br> <%= dadosGerais[0].rh%>%</p>
+                </div>
+            </div>
+            <div class="main__umidadeVento__vento">
+                <div class="main__umidadeVento__indiceUV__container">
+                    <img src="./views/imgs/vento (2).png" alt="" class="main__umidadeVento__indiceUV__img"><br>
+                    <p class="main__umidadeVento__indiceUV__descricao">Vento <br><br> <%= dadosGerais[0].wind_spd%> m/s</p>
+                </div>
+            </div>
+            <div class="main__umidadeVento__nascerPorSol">
+                <div class="main__umidadeVento__sol">
+                    <img src="./views/imgs/nascer-do-sol (1).png" alt="" class="main__umidadeVento__indiceUV__img"><br>
+                    <p class="main__umidadeVento__indiceUV__descricao">Nascer do sol <br><br><%= diminuirHora(dadosGerais[0].sunrise)%></p>
+                </div>
+                <div class="main__umidadeVento__sol">
+                    <img src="./views/imgs/mar.png " alt="" class="main__umidadeVento__indiceUV__img"><br>
+                    <p class="main__umidadeVento__indiceUV__descricao">Pôr-do-sol<br><br><%= diminuirHora(dadosGerais[0].sunset)%></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>p0</footer>
+</body>
+</html>

@@ -1,0 +1,239 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+
+}
+
+header {
+    height: 150px;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.header__containerLegenda {
+    width: 200px;
+    height: 100%;
+    margin-left: 100px;
+    text-align: center;
+    margin-top: 130px;
+    
+}
+
+.header__containerLegenda__legandaPrincipal {
+    color: white;
+    font-size: 20px;
+}
+
+.header__containerLegenda__legendaTemperatura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 22px;
+}
+
+.header__containerLegenda__legandaTemperatura__temperatura {
+    color: white;
+    font-size: 60px;
+
+}
+
+.header__containerLegenda__legendaTemperatura__SenseTerm {
+    color: white;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.header__containerImg {
+    width: 100px;
+    height: 100px;
+    margin-right: 120px;
+    margin-top: 50px;
+}
+
+main {
+
+    height: 800px;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.main__infoGarais {
+    height: 400px;
+    width: 90%;
+    margin-top: -180px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main__infoGerais__infoProxHora {
+    width: 49%;
+    height: 95%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.main__infoGerais__infoProxHora__previsaoProxHora {
+    width: 100%;
+    height: 220px;
+    background-color: #242527;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main__infoGerais__infoProxHora__previsaoProxHora__itens {
+    width: 60px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main__infoGerais__infoProxHora__previsaoProxHora__itens__hora {
+    color: white;
+}
+
+.main__infoGerais__infoProxHora__previsaoProxHora__itens__img {
+    width: 50px;
+}
+
+.main__infoGerais__infoProxHora__previsaoProxHora__itens__temperatura {
+    color: white;
+    font-size: 20px;
+}
+
+.main__infoGerais__infoProxHora__informacoes {
+    width: 100%;
+    height: 145px;
+    background-color: #242527;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.main__infoGerais__infoProxHora__informacoes__desc {
+    color: white;
+    font-size: 30px;
+}
+
+.main__infoGerais__infoProxDias {
+    width: 49%;
+    height: 95%;
+    border-radius: 10px;
+    background-color: #242527;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    
+}
+
+.main__infoGerais__infoProxDias__infoDiaria {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    
+    
+}
+
+
+
+.main__infoGerais__infoProxDias__infoDia {
+    color: white;
+    margin-left: 10px;
+    width: 100px;
+   
+    
+}
+
+.main__infoGerais__infoProxDias__probabilidade {
+    color: white;
+}
+
+.main__infoGerais__infoProxDias__imgTempo {
+    width: 30px;
+    height: 30px;
+}
+
+.main__infoGerais__infoProxDias__mimMaxTemp {
+    color: white;
+    margin-right: 20px;
+
+}
+
+.main__umidadeVento {
+    height: 170px;
+    width: 89%;
+    margin-top: -400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main__umidadeVento__indiceUV,
+.main__umidadeVento__umidade,
+.main__umidadeVento__vento {
+
+    height: 100%;
+    width: 240px;
+    background-color: #242527;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+}
+
+.main__umidadeVento__indiceUV__container {
+    height: 100%;
+    width: 100px;
+    text-align: center;
+}
+
+.main__umidadeVento__indiceUV__img {
+    margin-top: 30px;
+    width: 50px;
+}
+
+.main__umidadeVento__indiceUV__descricao {
+    color: white;
+    margin-top: 8px;
+}
+
+.main__umidadeVento__nascerPorSol {
+
+    height: 100%;
+    width: 275px;
+    background-color: #242527;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main__umidadeVento__sol {
+    height: 100%;
+    width: 100px;
+    text-align: center;
+}

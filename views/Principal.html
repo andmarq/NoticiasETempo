@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Página principal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: black;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #conteudo {
+            width: 100vw;
+            border: solid 1px black;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+        .buttons {
+            position: absolute;
+            bottom: 5px;
+        }
+        button {
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+        }
+        #loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="conteudo"></div>
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
+    <div class="buttons">
+        <button onclick="carregarPagina('/routes/tempo')">Tempo</button>
+        <button onclick="carregarPagina('/routes/noticias')">Noticias</button>
+    </div>
+
+    <script>
+        async function carregarPagina(url) {
+            const conteudo = document.getElementById('conteudo');
+            const loading = document.getElementById('loading');
+            try {
+                conteudo.style.opacity = 0; // Inicia a transição de saída
+                loading.style.display = 'block'; // Mostra o carregador
+                const response = await fetch(`http://localhost:4000${url}`);
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar página');
+                }
+                const html = await response.text();
+                setTimeout(() => {
+                    conteudo.innerHTML = html;
+                    conteudo.style.opacity = 1; // Inicia a transição de entrada
+                    loading.style.display = 'none'; // Oculta o carregador
+                }, 500); // Tempo igual ao da transição CSS
+            } catch (error) {
+                console.error('Erro ao carregar página:', error);
+                loading.style.display = 'none'; // Oculta o carregador em caso de erro
+            }
+        }
+    </script>
+</body>
+</html>
